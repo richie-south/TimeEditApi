@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TimeWarriors/TimeEdit.git"
+    "url": "git+https://github.com/rs222kn/TimeEditApi.git"
   },
   "author": "richard soderman",
   "license": "ISC","bugs": {
-    "url": "https://github.com/TimeWarriors/TimeEdit/issues"
+    "url": "https://github.com/rs222kn/TimeEditApi/issues"
   },
-  "homepage": "https://github.com/TimeWarriors/TimeEdit.git#readme",
+  "homepage": "https://github.com/rs222kn/TimeEditApi.git#readme",
 
   "dependencies": {
     "cheerio": "^0.19.0",
