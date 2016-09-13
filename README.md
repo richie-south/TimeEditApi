@@ -29,7 +29,7 @@ timeEdit.getSchedule('ny105')
         console.log(er);
     });
 
-// search and se if exists
+// search and see if exists
 timeEdit.search('ny105')
     .then((result) => {
         console.log(JSON.stringify(result, null, 2));
@@ -37,7 +37,7 @@ timeEdit.search('ny105')
         console.log(er);
     });
 
-//get all the types available
+// get all the types available
 timeEdit.getAllTypes(
         'https://se.timeedit.net/web/lnu/db1/schema1/')
     .then((result) => {
