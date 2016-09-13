@@ -1,8 +1,8 @@
 {
   "name": "timeeditapi",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "web scraper api to easy get schedule information from timeedit",
-  "main": "index.js",
+  "main": "api.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
