@@ -17,8 +17,8 @@ const getTypeURL = stringConcatReverced(typeUrlExtension);
 const getSearchUrlExtension = types => stringConcat(searchUrlExtension)(types);
 
 const replaceHtmlUrlWithJson = url => {
-    let reg = new RegExp('html');
-    return url.replace(reg, 'json');
+  let reg = new RegExp('html');
+  return url.replace(reg, 'json');
 };
 
 /**
@@ -32,12 +32,12 @@ const replaceHtmlUrlWithJson = url => {
  * @return {[function]}   [se getSearchURL description]
  */
 const makeSearchURL = (a, b, c) => {
-    const d = a(b);
+  const d = a(b);
 
-    return (url, types, id) => {
-        let urlArray = c(types).split(b);
-        return a(url)(urlArray.join(d(id)));
-    };
+  return (url, types, id) => {
+    let urlArray = c(types).split(b);
+    return a(url)(urlArray.join(d(id)));
+  };
 };
 
 /**
@@ -59,12 +59,12 @@ const getSearchURL = makeSearchURL(stringConcat, searchText, getSearchUrlExtensi
  * @private
  */
 const makeScheduleURL = (a, b, c) => {
-    const d = a(c);
+  const d = a(c);
 
-    return (url, dataIds) => {
-        let urlArray = b.split(c);
-        return a(url)(urlArray.join(d(dataIds)));
-    };
+  return (url, dataIds) => {
+    let urlArray = b.split(c);
+    return a(url)(urlArray.join(d(dataIds)));
+  };
 };
 
 /**
@@ -82,12 +82,12 @@ const _getScheduleURL = makeScheduleURL(stringConcat, scheduleUrl, objectsText);
  * @private
  */
 const joinAllArgumentsIfArray = fn => (...args) =>
-    fn(...args.map(a => {
-        if(Array.isArray(a)){
-            return a.join();
-        }
-        return a;
-    }));
+  fn(...args.map(a => {
+    if(Array.isArray(a)){
+      return a.join();
+    }
+    return a;
+  }));
 
 /**
  * [uses makeScheudleUrl to make an url with multible schedules id's]
@@ -106,9 +106,9 @@ const _getMultibleQueryScheduleURL = joinAllArgumentsIfArray(makeScheduleURL(str
  * @private
  */
 const doIfArrayOrNot = (a, b) => (url, dataIds) =>
-    Array.isArray(dataIds) ?
-        a(url, dataIds):
-        b(url, dataIds);
+  Array.isArray(dataIds) ?
+    a(url, dataIds):
+    b(url, dataIds);
 
 /**
  * [doIfArrayOrNot description]
@@ -120,8 +120,8 @@ const getScheduleURL = doIfArrayOrNot(_getMultibleQueryScheduleURL, _getSchedule
 
 
 module.exports = {
-    replaceHtmlUrlWithJson,
-    getTypeURL,
-    getSearchURL,
-    getScheduleURL
+  replaceHtmlUrlWithJson,
+  getTypeURL,
+  getSearchURL,
+  getScheduleURL
 };
