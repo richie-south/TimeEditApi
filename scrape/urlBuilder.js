@@ -17,7 +17,7 @@ const getTypeURL = stringConcatReverced(typeUrlExtension);
 const getSearchUrlExtension = types => stringConcat(searchUrlExtension)(types);
 
 const replaceHtmlUrlWithJson = url => {
-  let reg = new RegExp('html');
+  const reg = new RegExp('html');
   return url.replace(reg, 'json');
 };
 
@@ -35,7 +35,7 @@ const makeSearchURL = (a, b, c) => {
   const d = a(b);
 
   return (url, types, id) => {
-    let urlArray = c(types).split(b);
+    const urlArray = c(types).split(b);
     return a(url)(urlArray.join(d(id)));
   };
 };
@@ -62,7 +62,7 @@ const makeScheduleURL = (a, b, c) => {
   const d = a(c);
 
   return (url, dataIds) => {
-    let urlArray = b.split(c);
+    const urlArray = b.split(c);
     return a(url)(urlArray.join(d(dataIds)));
   };
 };

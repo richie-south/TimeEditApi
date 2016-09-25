@@ -6,8 +6,8 @@
  * @return {[boolean]}
  */
 const isValidUrl = url => {
-  let timeeditReg = new RegExp('timeedit');
-  let urlReg = new RegExp('^(https?:\\/\\/)?'+
+  const timeeditReg = new RegExp('timeedit');
+  const urlReg = new RegExp('^(https?:\\/\\/)?'+
   '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+
   '((\\d{1,3}\\.){3}\\d{1,3}))'+
   '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
@@ -27,7 +27,7 @@ const isValidUrl = url => {
  * @return {Boolean}
  */
 const isUrlTypeHtml = url => {
-  let reg = new RegExp('html');
+  const reg = new RegExp('html');
   return url.match(reg);
 };
 

@@ -3,28 +3,28 @@ const cheerio = require('cheerio');
 
 const _loadHtml =  html => cheerio.load(html);
 
-const _getTodaysDate = () => new Date();
-
 const _parseDate =  dateString => new Date(dateString);
 
 const getSearchData = html => {
-  let $ = _loadHtml(html);
-  let dataIds = $('.searchObject').map((i, elem) => {
-    return {
-      id: $(elem).data('id'),
-      name: $(elem).data('name')
-    };
+  const $ = _loadHtml(html);
+  const dataIds = $('.searchObject')
+    .map((i, elem) => {
+      return {
+        id: $(elem).data('id'),
+        name: $(elem).data('name')
+      };
   }).get();
   return dataIds.length > 0 ? dataIds : dataIds[0];
 };
 
 const getTypes = html => {
-  let $ = _loadHtml(html);
-  let types = $('#fancytypeselector option').map((i, elem) => {
-    return {
-      name: $(elem).text(),
-      value: $(elem).val()
-    };
+  const $ = _loadHtml(html);
+  const types = $('#fancytypeselector option')
+    .map((i, elem) => {
+      return {
+        name: $(elem).text(),
+        value: $(elem).val()
+      };
   }).get();
   return types;
 };
@@ -35,7 +35,7 @@ const getTypes = html => {
  * @return {[string]}      [searched item name]
  */
 const getSearchId = html => {
-  let $ = _loadHtml(html);
+  const $ = _loadHtml(html);
   return $('#searchTextWide').text().trim();
 };
 
@@ -70,11 +70,10 @@ const buildSchedule = (object, id) => {
  * @return {[object]}        [only todays room schedule information]
  */
 const buildTodaysSchedule = (object, id) => {
-  let todaysSchedule = buildSchedule(object, id)
+  const todaysSchedule = buildSchedule(object, id)
     .filter((reservation) => {
-      let reservationDate = _parseDate(reservation.booking.time.startDate);
-      let todaysDate = _getTodaysDate();
-
+      const reservationDate = _parseDate(reservation.time.startDate);
+      const todaysDate = new Date();
       return reservationDate.getFullYear() === todaysDate.getFullYear() &&
         reservationDate.getMonth() === todaysDate.getMonth() &&
         reservationDate.getDate() === todaysDate.getDate();
@@ -83,7 +82,7 @@ const buildTodaysSchedule = (object, id) => {
 };
 
 const isValidSearch =  html => {
-  let $ = _loadHtml(html);
+  const $ = _loadHtml(html);
   return $('.searchObject').hasOwnProperty('0');
 };
 
