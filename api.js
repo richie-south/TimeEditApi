@@ -4,7 +4,7 @@ const dataParser = require('./dataParser.js');
 
 const _search = html => {
   if(!dataParser.isValidSearch(html)){
-    throw 'unvalid search';
+    throw 'Invalid search';
   }
   return dataParser.getSearchData(html);
 };
@@ -20,14 +20,14 @@ const getScheduleByScheduleUrl = url => {
           s.getHtml(jsonUrl)
             .then(jsonString => JSON.parse(jsonString))
             .then(parsedJson => resolve(dataParser.buildSchedule(parsedJson, id)))
-            .catch(e => reject(e));
+            .catch(reject);
         })
-        .catch(e => reject(e));
+        .catch(reject);
     }else{
       s.getHtml(url)
         .then(jsonString => JSON.parse(jsonString))
         .then(parsedJson => resolve(dataParser.buildSchedule(parsedJson)))
-        .catch(e => reject(e));
+        .catch(reject);
     }
   });
 };
@@ -42,7 +42,7 @@ const getAllTypes = url => {
   return new Promise((resolve, reject) => {
     s.getHtml(s.getTypeURL())
       .then(html => resolve(dataParser.getTypes(html)))
-      .catch(e => reject(e));
+      .catch(reject);
   });
 };
 
@@ -57,7 +57,7 @@ const search = scraper => id =>
     scraper.getHtml(scraper.getSearchURL(id))
       .then(html =>  _search(html))
       .then(searchData => resolve(searchData))
-      .catch(e => reject(e));
+      .catch(reject);
   });
 
 /**
@@ -71,7 +71,7 @@ const getSchedule = _getSchedule => id =>
     _getSchedule(id)
       .then(data => JSON.parse(data))
       .then(parsedData => resolve(dataParser.buildSchedule(parsedData, id)))
-      .catch(e => reject(e));
+      .catch(reject);
   });
 
 /**
@@ -85,7 +85,7 @@ const getTodaysSchedule = _getSchedule => id =>
     _getSchedule(id)
       .then(data => JSON.parse(data))
       .then(parsedData => resolve(dataParser.buildTodaysSchedule(parsedData, id)))
-      .catch(e => reject(e));
+      .catch(reject);
   });
 
 /**
@@ -101,14 +101,14 @@ const _getSchedule = scraper => id =>
       .then(searchData => searchData.map(a => a.id))
       .then(dataIds => scraper.getHtml(scraper.getScheduleURL(dataIds)))
       .then(jsonString => resolve(jsonString))
-      .catch(e => reject(e));
+      .catch(reject);
   });
 
 const getScheduleByItemId = scraper => itemId =>
   new Promise((resolve, reject) => {
       scraper.getHtml(scraper.getScheduleURL(itemId))
         .then(jsonString => resolve(jsonString))
-        .catch(er => reject(er));
+        .catch(reject);
   });
 
 const api = (url, types) => {
