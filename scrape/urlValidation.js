@@ -6,20 +6,20 @@
  * @return {[boolean]}
  */
 const isValidUrl = url => {
-    let timeeditReg = new RegExp('timeedit');
-    let urlReg = new RegExp('^(https?:\\/\\/)?'+
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+
-    '(\\#[-a-z\\d_]*)?$','i');
-    if(!urlReg.test(url)){
-        return false;
-    }
-    if(!url.match(timeeditReg)){
-        return false;
-    }
-    return true;
+  const timeeditReg = new RegExp('timeedit');
+  const urlReg = new RegExp('^(https?:\\/\\/)?'+
+  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+
+  '((\\d{1,3}\\.){3}\\d{1,3}))'+
+  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
+  '(\\?[;&a-z\\d%_.~+=-]*)?'+
+  '(\\#[-a-z\\d_]*)?$','i');
+  if(!urlReg.test(url)){
+      return false;
+  }
+  if(!url.match(timeeditReg)){
+      return false;
+  }
+  return true;
 };
 
 /**
@@ -27,11 +27,11 @@ const isValidUrl = url => {
  * @return {Boolean}
  */
 const isUrlTypeHtml = url => {
-    let reg = new RegExp('html');
-    return url.match(reg);
+  const reg = new RegExp('html');
+  return url.match(reg);
 };
 
 module.exports = {
-    isValidUrl,
-    isUrlTypeHtml
+  isValidUrl,
+  isUrlTypeHtml
 };
