@@ -1,6 +1,6 @@
 'use strict';
 
-const scheduleUrl = 'ri.json?h=f&sid=3&p=0.m%2C12.n&objects=&ox=0&types=0&fe=0&h2=f';
+const scheduleUrl = 'ri.json?h=f&sid=3&objects=&ox=0&types=0&fe=0&h2=f';
 const searchUrlExtension = 'objects.html?max=15&fr=t&partajax=t&im=f&sid=3&l=sv_SE&search_text=&types=';
 const typeUrlExtension = 'ri1Q7.html';
 const searchText = 'search_text=';
