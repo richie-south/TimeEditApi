@@ -1,6 +1,6 @@
 {
   "name": "timeeditapi",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "web scraper api to easy get schedule information from timeedit",
   "main": "api.js",
   "scripts": {
