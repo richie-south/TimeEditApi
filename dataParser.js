@@ -65,18 +65,19 @@ const buildSchedule = (object, id) => {
 };
 
 /**
- * [todays room schedule information]
+ * [gets room schedule information by specific date]
  * @param  {[object]} object [cherio html object]
- * @return {[object]}        [only todays room schedule information]
+ * @param  {[string]} id     [sechdule id]
+ * @param  {Date}   [date=new Date()] [Date object]
+ * @return {[object]}        [only room schedule information for specific date]
  */
-const buildTodaysSchedule = (object, id) => {
+const buildScheduleByDate = (object, id, date = new Date()) => {
   const todaysSchedule = buildSchedule(object, id)
     .filter((reservation) => {
       const reservationDate = _parseDate(reservation.time.startDate);
-      const todaysDate = new Date();
-      return reservationDate.getFullYear() === todaysDate.getFullYear() &&
-        reservationDate.getMonth() === todaysDate.getMonth() &&
-        reservationDate.getDate() === todaysDate.getDate();
+      return reservationDate.getFullYear() === date.getFullYear() &&
+        reservationDate.getMonth() === date.getMonth() &&
+        reservationDate.getDate() === date.getDate();
     });
   return todaysSchedule.length > 0 ? todaysSchedule : null;
 };
@@ -88,7 +89,7 @@ const isValidSearch =  html => {
 
 module.exports = {
   isValidSearch,
-  buildTodaysSchedule,
+  buildScheduleByDate,
   buildSchedule,
   getSearchId,
   getTypes,
