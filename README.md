@@ -21,6 +21,14 @@ timeEdit.getTodaysSchedule('ny105')
         console.log(er);
     });
 
+// schedule by specific date: year, month, day
+timeEdit.getScheduleByDate('ny105', new Date())
+    .then((roomSchedule) => {
+        console.log(JSON.stringify(roomSchedule, null, 2));
+    }).catch((er) => {
+        console.log(er);
+    });
+
 // full schedule
 timeEdit.getSchedule('ny105')
     .then((schedule) => {
