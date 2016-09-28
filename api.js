@@ -80,13 +80,24 @@ const getSchedule = _getSchedule => id =>
  * @param  {[string / array of strings]} id     [name of a thing]
  * @return {[promise]}        [todays schedule]
  */
-const getTodaysSchedule = _getSchedule => id =>
+const getScheduleByDate = _getSchedule => (id, date = new Date()) =>
   new Promise((resolve, reject) => {
     _getSchedule(id)
       .then(data => JSON.parse(data))
-      .then(parsedData => resolve(dataParser.buildTodaysSchedule(parsedData, id)))
+      .then(parsedData => resolve(dataParser.buildScheduleByDate(parsedData, id, date)))
       .catch(reject);
   });
+
+
+/**
+ * [gets todays schedule]
+ * @param  {[object]} _getSchedule [initilized _getSchedule object]
+ * @param  {[string / array of strings]} id     [name of a thing]
+ * @return {[promise]}        [todays schedule]
+ */
+const getTodaysSchedule = _getSchedule => id =>
+  getScheduleByDate(_getSchedule)(id);
+
 
 /**
  * [gets schedule for multible days un parsed]
@@ -116,6 +127,7 @@ const api = (url, types) => {
 
   return {
     getSchedule: getSchedule(_getSchedule(scraper)),
+    getScheduleByDate: getScheduleByDate(_getSchedule(scraper)),
     getTodaysSchedule: getTodaysSchedule(_getSchedule(scraper)),
     search: search(scraper),
     getScheduleByItemId: getScheduleByItemId(scraper),
